@@ -1,3 +1,5 @@
-export const ADD_LEADS = 'Add lead'
-export const DELETE_LEADS = 'Delete lead' 
-export const GET_LEADS = 'Get leads'
+export const ADD_LEADS = "Add lead"
+export const DELETE_LEADS = "Delete lead"
+export const GET_LEADS = "Get leads"
+export const GET_ERRORS = "Get errors"
+export const CREATE_LEAD = "Create lead"

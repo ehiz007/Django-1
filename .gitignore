@@ -1,1 +1,3 @@
 node_modules
+lead_manager/lead_manager/.env
+lead_manager/lead_manager/__pycache__
