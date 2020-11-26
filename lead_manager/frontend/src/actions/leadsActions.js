@@ -1,11 +1,6 @@
-import {
-	ADD_LEADS,
-	GET_LEADS,
-	DELETE_LEADS,
-	CREATE_LEAD,
-	GET_ERRORS,
-} from "./actionTypes"
+import { ADD_LEADS, GET_LEADS, DELETE_LEADS, CREATE_LEAD } from "./actionTypes"
 import axios from "axios"
+import { returnErrors, createMessage } from "./messages"
 
 export const getLeads = () => (dispatch) => {
 	axios
@@ -16,49 +11,32 @@ export const getLeads = () => (dispatch) => {
 				payload: res.data,
 			})
 		})
-		.catch((err) =>
-			dispatch({
-				type: GET_ERRORS,
-				payload: {
-					msg: err.response.data,
-					status: err.response.status,
-				},
-			}),
-		)
+		.catch((err) => {
+			return dispatch(returnErrors(err.response.data, err.response.status))
+		})
 }
 
 export const addLead = (data) => (dispatch) => {
 	axios
 		.post("/api/leads/", data)
 		.then((res) => {
-			dispatch({
-				type: CREATE_LEAD,
-				payload: { leadAdded: "Leads created" },
-			})
+			dispatch(createMessage({ leadAdded: "Leads created" }))
+
 			dispatch({
 				type: ADD_LEADS,
 				payload: res.data,
 			})
 		})
-		.catch((err) =>
-			dispatch({
-				type: GET_ERRORS,
-				payload: {
-					msg: err.response.data,
-					status: err.response.status,
-				},
-			}),
-		)
+		.catch((err) => {
+			return dispatch(returnErrors(err.response.data, err.response.status))
+		})
 }
 
 export const deleteLead = (id) => (dispatch) => {
 	axios
 		.delete(`/api/leads/${id}`)
 		.then((res) => {
-			dispatch({
-				type: CREATE_LEAD,
-				payload: { leadDeleted: "Leads Deleted" },
-			})
+			dispatch(createMessage({ leadDeleted: "Leads Deleted" }))
 			dispatch({
 				type: DELETE_LEADS,
 				payload: id,
