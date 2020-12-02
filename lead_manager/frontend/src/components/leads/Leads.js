@@ -23,7 +23,7 @@ class Leads extends Component {
 						{this.props.leads.map((lead, index) => (
 							<tr key={lead.id}>
 								<td>{index + 1}</td>
-								<td>{lead.name}</td>
+								<td>{lead.username}</td>
 								<td>{lead.email}</td>
 								<td>{lead.message}</td>
 								<td>

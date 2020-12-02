@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react"
+import React, { Component, Fragment, StrictMode } from "react"
 import ReactDom from "react-dom"
 import { Provider } from "react-redux"
 import { HashRouter as Router, Route, Switch } from "react-router-dom"
